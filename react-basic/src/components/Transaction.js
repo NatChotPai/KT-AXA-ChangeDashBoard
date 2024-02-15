@@ -1,22 +1,19 @@
 import Item from "./Item";
 import './Transaction.css'
-import {v4 as uuidv4} from 'uuid';
+// import DataContext from "../data/DataContext";
+// import { useContext } from 'react'
 
-const Transaction =()=> {
+const Transaction =(props)=> {
     //Array Data
-    const data =[
-        {title:"ค่ารักษาพยาบาล" ,amount:-2000},
-        {title:"ค่าน้ำมัน" ,amount:-2000},
-        {title:"ค่าเช่าบ้าน" ,amount:-2000},
-        {title:"เงินเดือน" ,amount:70000},
-        {title:"รายได้พิเศษ" ,amount:2000}
-    ]
-
+    const {items} = props 
+    /* solution 2 Global context */
+    // const name = useContext(DataContext)
     return(
-      <ul className="item-list">
+      <div>
+        <ul className="item-list">
             {/* Array Map */}
-            {data.map((element)=>{
-                return <Item title={element.title} amount={element.amount} key = {uuidv4()}/>
+            {items.map((element)=>{
+                return <Item title={element.title} amount={element.amount} key = {element.id}/>
             })}
 
           {/* <Item title={data[0].title} amount={data[0].amount}/>
@@ -24,7 +21,17 @@ const Transaction =()=> {
           <Item title={data[2].title} amount={data[2].amount}/>
           <Item title={data[3].title} amount={data[3].amount}/>
           <Item title={data[4].title} amount={data[4].amount}/> */}
-      </ul>
+        </ul>
+
+        {/* solution 1 Global context */}
+        {/* <DataContext.Consumer>
+            {value=><p>{value}</p>}
+        </DataContext.Consumer> */}
+
+        {/* solution 2 Global context by useContext */}
+        {/* {name} */}
+
+      </div>
     )
 }
 
